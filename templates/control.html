@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block body %}
+<div data-role="page" data-title="Control" id="control" data-add-back-btn="true">
+	<div data-role="header" data-theme="b">
+		<h1>Pi Remote Control</h1>
+		<h4>{{d.id}}</h4>
+	</div>
+
+    <div data-role="content">
+        
+        <div id ="remote">
+            <svg width="100%">
+            	<svg viewBox="0 0 400 600">
+					<!-- Backgrounds -->
+					<g opacity=".5" >
+					  <path d="M 0 200 A 200 200 0 1 1 400 200" fill="black" />
+					<rect x="00" y="200" width="400" height="400" fill="black" />
+					</g>					
+
+					
+					<!-- Arrows -->					
+					<g opacity="1" >
+					  <path d="M 150,130 200,100 250,130 z" fill="white" stroke="gray" onclick="clickedOp('{{ d.id }}','KEY_UP');"/>
+					  <path d="M 150,270 200,300 250,270 z" fill="white" stroke="gray" onclick="clickedOp('{{ d.id }}','KEY_DOWN');"/>
+					  
+					  <text x="185" y="205" font-size="20" fill="white" onclick="clickedOp('{{ d.id }}','KEY_OK');" id="key_ok">OK</text>
+					  <path d="M 130,150 100,200 130,250 z" fill="white" stroke="gray" onclick="clickedOp('{{ d.id }}','KEY_LEFT');"/>
+					  <path d="M 270,150 300,200 270,250 z" fill="white" stroke="gray" onclick="clickedOp('{{ d.id }}','KEY_RIGHT');"/>
+					</g>
+	
+					<!-- Controls-->
+					<circle cx="300" cy="88" r="30" fill="#990033" onclick="clickedOp('{{ d.id }}','KEY_CONNECT');" id="key_connect" />
+					  <text x="286" y="92" font-size="20" fill="white" onclick="clickedOp('{{ d.id }}','KEY_CONNECT');">ext</text>
+					<circle cx="200" cy="50" r="30" fill="#990033" onclick="clickedOp('{{ d.id }}','KEY_MENU');" id="key_menu" />
+					  <text x="180" y="55" font-size="18" fill="white" onclick="clickedOp('{{ d.id }}','KEY_MENU');">menu</text>
+					<circle cx="100" cy="88" r="30" fill="#990033" onclick="clickedOp('{{ d.id }}','KEY_INFO');" id="key_info" />
+					  <text x="86" y="92" font-size="18" fill="white" onclick="clickedOp('{{ d.id }}','KEY_INFO');">info</text>
+					<circle cx="56" cy="170" r="30" fill="#990033" onclick="clickedOp('{{ d.id }}','KEY_INFO');" id="key_info" />
+					  <text x="42" y="176" font-size="18" fill="white" onclick="clickedOp('{{ d.id }}','KEY_I');">sub</text>
+					<circle cx="346" cy="170" r="30" fill="#990033" onclick="clickedOp('{{ d.id }}','KEY_INFO');" id="key_info" />
+					  <text x="334" y="176" font-size="18" fill="white" onclick="clickedOp('{{ d.id }}','KEY_POWER');">pwr</text>
+
+
+					<!-- Colour Buttons -->
+					<circle cx="65"  cy="350" r="20" fill="red" onclick="clickedOp('{{ d.id }}','KEY_RED');" id="key_red" />
+					<circle cx="155" cy="350" r="20" fill="green" onclick="clickedOp('{{ d.id }}','KEY_GREEN');" id="key_green" />
+					<circle cx="245" cy="350" r="20" fill="yellow" onclick="clickedOp('{{ d.id }}','KEY_YELLOW');" id="key_yellow" />
+					<circle cx="335" cy="350" r="20" fill="blue" onclick="clickedOp('{{ d.id }}','KEY_BLUE');" id="key_blue" />
+					
+
+
+
+					<!-- Channel-->
+					<circle cx="100" cy="460" r="30" fill="#990033" onclick="clickedOp('{{ d.id }}','KEY_CHANNELUP');" id="key_channelup" />
+					  <text x="91" y="467" font-size="20" fill="white" onclick="clickedOp('{{ d.id }}','KEY_CHANNELUP');">P+</text>
+					<circle cx="100" cy="540" r="30" fill="#990033" onclick="clickedOp('{{ d.id }}','KEY_CHANNELDOWN');" id="key_channeldown" />
+					  <text x="92" y="547" font-size="20" fill="white" onclick="clickedOp('{{ d.id }}','KEY_CHANNELDOWN');">P-</text>
+
+					<!-- Channel Arrows -->
+					<path d="M 140,470 160,450 180,470 z" fill="white" stroke="gray" onclick="clickedOp('{{ d.id }}','KEY_UP');"/>
+					<path d="M 140,530 160,550 180,530 z" fill="white" stroke="gray" onclick="clickedOp('{{ d.id }}','KEY_UP');"/>
+					
+
+					<!-- Volume-->
+					<circle cx="300" cy="460" r="30" fill="#990033" onclick="clickedOp('{{ d.id }}','KEY_VOLUMEUP');" id="key_volumeup" />
+					  <text x="291" y="467" font-size="20" fill="white" onclick="clickedOp('{{ d.id }}','KEY_VOLUMEUP');">V+</text>
+					<circle cx="300" cy="540" r="30" fill="#990033" onclick="clickedOp('{{ d.id }}','KEY_VOLUMEDOWN');" id="key_volumedown" />
+					  <text x="292" y="547" font-size="20" fill="white" onclick="clickedOp('{{ d.id }}','KEY_VOLUMEDOWN');">V-</text>
+					
+					<!-- Volume Bars -->
+					<rect x="200" y="450" height="10" width="60" fill="white" />
+					<rect x="200" y="470" height="10" width="50" fill="white" />
+				    <rect x="200" y="490" height="10" width="40" fill="white" />
+				    <rect x="200" y="510" height="10" width="30" fill="white" />
+              		<rect x="200" y="530" height="10" width="20" fill="white" />
+              		<rect x="200" y="550" height="10" width="10" fill="white" />
+            	</svg>
+            
+            </svg>
+        </div>
+    </div>
+</div>        
+{% endblock %}
+
+
