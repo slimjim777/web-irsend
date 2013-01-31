@@ -66,7 +66,6 @@ class Lirc:
 		"""
 		Send single call to IR LED.
 		"""
-		print "---", ['irsend', 'SEND_ONCE', device_id, message]
 		call(['irsend', 'SEND_ONCE', device_id, message])
 
 				
