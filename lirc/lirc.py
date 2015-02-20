@@ -1,5 +1,5 @@
 from subprocess import call
-
+import re
 
 class Lirc:
 	"""
@@ -33,6 +33,10 @@ class Lirc:
 		for line in self.conf:
 			# Convert tabs to spaces
 			l = line.replace('\t',' ')
+
+			# Skip comments
+			if re.match('^\s*#',line):
+				continue
 			
 			# Look for a 'begin remote' line
 			if l.strip()=='begin remote':
