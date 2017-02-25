@@ -21,8 +21,8 @@ def index(device=None):
     devices = []
     for dev in lircParse.devices():
         d = {
-            'id': dev,
-            'name': dev,
+            'id': dev.decode('utf-8'),
+            'name': dev.decode('utf-8'),
         }
         devices.append(d)
     

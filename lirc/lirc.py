@@ -32,10 +32,10 @@ class Lirc:
 		
 		for line in self.conf:
 			# Convert tabs to spaces
-			l = line.replace('\t',' ')
+			l = line.replace('\t'.encode('utf-8'),' '.encode('utf-8'))
 
 			# Skip comments
-			if re.match('^\s*#',line):
+			if re.match('^\s*#'.encode('utf-8'),line):
 				continue
 			
 			# Look for a 'begin remote' line
@@ -44,9 +44,9 @@ class Lirc:
 				remote_name = None
 				code_section = False
 					
-			elif not remote_name and l.strip().find('name')>-1:
+			elif not remote_name and l.strip().find('name'.encode('utf-8'))>-1:
 				# Got the name of the remote
-				remote_name = l.strip().split(' ')[-1]
+				remote_name = l.strip().split(' '.encode('utf-8'))[-1]
 				if remote_name not in self.codes:
 					self.codes[remote_name] = {}
 				
@@ -75,5 +75,3 @@ class Lirc:
 				
 if __name__ == "__main__":
 	lirc = Lirc('/etc/lirc/lircd.conf')
-	
-	
