@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import argparse
 from lirc.lirc import Lirc
 from flask import Flask
 from flask import render_template
@@ -20,8 +21,8 @@ def index(device=None):
     devices = []
     for dev in lircParse.devices():
         d = {
-            'id': dev,
-            'name': dev,
+            'id': dev.decode('utf-8'),
+            'name': dev.decode('utf-8'),
         }
         devices.append(d)
     
@@ -44,7 +45,17 @@ def clicked(device_id=None, op=None):
 
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run('0.0.0.0')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--ipaddr',
+                        default="0.0.0.0",
+                        help="IP address to listen on, default %(default)s")
+    parser.add_argument('-p', '--port',
+                        default=5000,
+                        type=int,
+                        help="Port to listen on, default %(default)s")
+    parser.add_argument('-d', '--debug',
+                        action='store_true',
+                        help="Debug mode, default %(default)s")
+    args = parser.parse_args()
 
-
+    app.run(args.ipaddr, args.port, debug=args.debug)
