@@ -15,7 +15,6 @@ lircParse = Lirc('/etc/lirc/lircd.conf')
 
 
 @app.route("/")
-@app.route("/<device>")
 def index(device=None):
     # Get the devices from the config file
     devices = []
@@ -25,13 +24,18 @@ def index(device=None):
             'name': dev,
         }
         devices.append(d)
-    
+
     return render_template('remote.html', devices=devices)
 
 
 @app.route("/device/<device_id>")
 def device(device_id=None):
-    d = {'id':device_id}        
+    codes = list(lircParse.codes[device_id])
+    codes.sort()
+    d = {
+        'id': device_id,
+        'codes': codes,
+    }
     return render_template('control.html', d=d)
 
 
@@ -39,7 +43,7 @@ def device(device_id=None):
 def clicked(device_id=None, op=None):
     # Send message to Lirc to control the IR
     lircParse.send_once(device_id, op)
-    
+
     return ""
 
 

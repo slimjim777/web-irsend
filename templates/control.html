@@ -78,6 +78,11 @@
             
             </svg>
         </div>
+        <ul data-role="listview" data-inset="true" data-icon="false">
+            {% for c in d.codes %}
+                <li><a onclick="clickedOp('{{ d.id }}', '{{ c }}')">{{ c }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
 </div>        
 {% endblock %}
