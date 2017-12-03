@@ -19,10 +19,10 @@ lircParse = Lirc('/etc/lirc/lircd.conf')
 def index(device=None):
     # Get the devices from the config file
     devices = []
-    for dev in lircParse.devices():
+    for dev in lircParse.devices:
         d = {
-            'id': dev.decode('utf-8'),
-            'name': dev.decode('utf-8'),
+            'id': dev,
+            'name': dev,
         }
         devices.append(d)
     
