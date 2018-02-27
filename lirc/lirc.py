@@ -8,8 +8,10 @@ class Lirc:
 	codes = {}
 
 	def __init__(self, conf):
-		# Open the config file
-		self.conf = open(conf, 'r')
+		# Open the config file and directory
+		conflist = [conf]
+		conflist.extend(glob.glob(conf+".d/*.conf"))  #open lircd.conf.d comfig directory
+		self.conf = fileinput.input(conflist, mode='r')
 
 		# Parse the config file
 		self.parse()
