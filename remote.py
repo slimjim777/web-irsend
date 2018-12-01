@@ -4,11 +4,12 @@ import argparse
 from lirc.lirc import Lirc
 from flask import Flask
 from flask import render_template
-from flask import request, redirect, url_for
+# from flask import request, redirect, url_for
 
 BASE_URL = ''
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 # Initialise the Lirc config parser
 lircParse = Lirc('/etc/lirc/lircd.conf')
@@ -36,7 +37,8 @@ def device(device_id=None):
         'id': device_id,
         'codes': codes,
     }
-    return render_template('control.html', d=d)
+    return render_template(
+        ["control_" + device_id.lower() + ".html", "control.html"], d=d)
 
 
 @app.route("/device/<device_id>/clicked/<op>")
@@ -45,7 +47,6 @@ def clicked(device_id=None, op=None):
     lircParse.send_once(device_id, op)
 
     return ""
-
 
 
 if __name__ == "__main__":
