@@ -1,4 +1,6 @@
 from subprocess import call
+import fileinput
+import glob
 import re
 
 class Lirc:
